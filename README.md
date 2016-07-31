@@ -30,7 +30,7 @@ Something important to note here: that `db` stands for our database, which as me
 The "usercollection" part is our collection. Note tha there wasn't a step where we create the "usercollection" collection. That's because the first time we add it, it's going to be auto-created.
 If u want to see.type:
 
-    db.usercollection.find().pretty()db.usercollection.find().pretty()
+    db.usercollection.find().pretty()
     
 the `.pretty()` method gives us linebreaks. It will return:
 
@@ -94,4 +94,44 @@ Above the two lines just mentioned, add the following:
 
 ##### Display data list
 
-Add router in `index.js`, and get `db` by `req`, 
+Add router in `index.js`, and get `db` by `req`.
+Basically, we tell our app which collection we want to use('userconlliction') and do a find, then return the result as the variable "docs".
+Once we hace those documents, we then do a render of userlist ( which will need a corresponding Jade template), giving it the userlist variable to work with, and passing our database documents to that variable.
+
+Then add userlist jade template.
+
+    extends layout
+    
+    block content
+        h1.
+            User List
+        ul
+            each user, i in userlist
+                li
+                    a(href="mailto:#{user.email}")= user.username
+           
+When run `npm start`, see some errors:
+
+    Error: Module version mismatch. Expected 48, got 44.
+        at Error (native)
+        at Object.Module._extensions..node (module.js:568:18)
+        at Module.load (module.js:458:32)
+        at tryModuleLoad (module.js:417:12)
+        at Function.Module._load (module.js:409:3)
+        at Module.require (module.js:468:17)
+        at require (internal/module.js:20:19)
+        at Object.<anonymous> (/Users/zhouchunjie/Projects/Le0zh0u/simple-express/node_modules/.npminstall/bson/0.2.22/bson/ext/index.js:15:10)
+        at Module._compile (module.js:541:32)
+        at Object.Module._extensions..js (module.js:550:10)
+
+But, it can work.
+
+    First off, don't worry! You can still run your node application even when seeing this error. Basically, what's happening is: during the initial "npm install" process, the MongoDB module tried to create a couple of files using Python v2.7. If you don't happen to have that installed (even if you have a higher version of Python, it won't work), then it can't build the files, so it falls back on a JavaScript-driven system instead. This system works just fine, but in a production environment with a lot of data handling, it can be slow, so it's better to have the binaries.
+    
+    If you want to get rid of the error, follow these steps:
+    
+    Install Python 2.7 (this will not impact existing Python 3.x installs).
+    Delete your node_modules directory and everything in it.
+    Re-run npm install in your nodetest1 directory from the command line.
+
+My Mac has Python 2.7.10, I ignore it.
