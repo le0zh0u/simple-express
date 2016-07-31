@@ -1,0 +1,2 @@
+# simple-express
+a simple express following the article named &lt;THE DEAD-SIMPLE STEP-BY-STEP GUIDE FOR FRONT-END DEVELOPERS TO GETTING UP AND RUNNING WITH NODE.JS, EXPRESS, JADE, AND MONGODB>
