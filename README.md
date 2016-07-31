@@ -120,7 +120,7 @@ When run `npm start`, see some errors:
         at Function.Module._load (module.js:409:3)
         at Module.require (module.js:468:17)
         at require (internal/module.js:20:19)
-        at Object.<anonymous> (/Users/zhouchunjie/Projects/Le0zh0u/simple-express/node_modules/.npminstall/bson/0.2.22/bson/ext/index.js:15:10)
+        at Object.<anonymous> (...../simple-express/node_modules/.npminstall/bson/0.2.22/bson/ext/index.js:15:10)
         at Module._compile (module.js:541:32)
         at Object.Module._extensions..js (module.js:550:10)
 
@@ -134,4 +134,34 @@ But, it can work.
     Delete your node_modules directory and everything in it.
     Re-run npm install in your nodetest1 directory from the command line.
 
-My Mac has Python 2.7.10, I ignore it.
+My Mac has Python 2.7.10, and I ignore it.
+
+### Add User
+
+##### Input Data page
+Add following code above the last module.exports line:
+
+    /**
+    * GET New User Page.
+    */
+    router.get('/newuser', function (req, res) {
+      res.render('newuser', {title: 'Add New User'});
+    });
+
+Add new user page template.
+
+    
+    extends layout
+
+    block content
+        h1= title
+        form#formAddUser(name='addUser', method="post", action="/adduser")
+            input#inputUserName(type="text", placeholder="username", name="username")
+            input#inputUserEmail(type="text", placeholder="useremail", name="useremail")
+            button#btnSubmit(type="submit") submit
+    
+We are creating a form with the ID "formAddUser", method is Post, action is adduser.
+  
+##### Add post function
+
+  
