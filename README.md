@@ -200,3 +200,7 @@ Type following:
     });
 
   
+  
+It is according a tutorial named [THE DEAD-SIMPLE STEP-BY-STEP GUIDE FOR FRONT-END DEVELOPERS TO GETTING UP AND RUNNING WITH NODE.JS, EXPRESS, JADE, AND MONGODB](http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/)
+
+Can contact me <leozhou2015@163.com>. ;)
