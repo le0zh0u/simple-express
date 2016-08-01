@@ -164,4 +164,39 @@ We are creating a form with the ID "formAddUser", method is Post, action is addu
   
 ##### Add post function
 
+Need to do is add a route for POSTing to /adduser.
+
+Create our insertion function in `/routes/index.js` and put the above the final module.exports line (it doesn't REALLY matter, but it makes things cleaner to wrap up with the export).
+Type following:
+
+    /**
+     * POST to Add User Service.
+     */
+    router.post('/adduser', function (req, res) {
+      //Set our internal DB variable
+      var db = req.db;
+    
+      //Get our form values. These rely on the "name" attributes
+      var userName = req.body.username;
+      var userEmail = req.body.useremail;
+    
+      //Set our collection
+      var collection = db.get('usercollection');
+    
+      //Submit to the DB
+      collection.insert({
+        "username":userName,
+        "email":userEmail
+      }, function (err, doc) {
+        if (err){
+          //If it failed, return error
+          res.send("There was a problem adding the information to the database.");
+        }
+        else{
+          //Add forward to success page
+          res.redirect('userlist');
+        }
+      });
+    });
+
   
